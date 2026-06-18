@@ -754,4 +754,225 @@ h3{
     }
 
 }
+
+/* REVEAL ANIMATIONS */
+
+.section,
+.card,
+.moment,
+.featured-book-container,
+.facts-list li{
+
+    opacity:0;
+
+    transform:translateY(50px);
+
+    transition:.8s ease;
+
+}
+
+.show{
+
+    opacity:1 !important;
+
+    transform:translateY(0) !important;
+
+}
+
+
+/* ACTIVE NAV */
+
+.active-link{
+
+    color:var(--dusty-pink) !important;
+
+    font-weight:700;
+
+}
+
+
+/* MOBILE MENU */
+
+@media(max-width:768px){
+
+    .navbar{
+
+        position:absolute;
+
+        top:100%;
+
+        left:0;
+
+        width:100%;
+
+        background:#fffdfb;
+
+        padding:30px;
+
+    }
+
+    .navbar.active{
+
+        display:block;
+
+    }
+
+    .navbar ul{
+
+        flex-direction:column;
+
+        gap:20px;
+
+        text-align:center;
+
+    }
+
+}
+
+
+/* FLOATING FLOWERS */
+
+.flower{
+
+    position:fixed;
+
+    bottom:-50px;
+
+    pointer-events:none;
+
+    z-index:1;
+
+    opacity:.15;
+
+    animation:floatFlower linear forwards;
+
+}
+
+@keyframes floatFlower{
+
+    from{
+
+        transform:
+        translateY(0)
+        rotate(0deg);
+
+    }
+
+    to{
+
+        transform:
+        translateY(-120vh)
+        rotate(360deg);
+
+    }
+
+}
+
+
+/* PAGE LOAD */
+
+body{
+
+    opacity:0;
+
+    transition:1s ease;
+
+}
+
+body.loaded{
+
+    opacity:1;
+
+}
+
+/* =========================================
+   STORE HERO
+========================================= */
+
+.store-hero{
+
+    min-height:70vh;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    text-align:center;
+
+    padding-top:120px;
+
+    background:
+    linear-gradient(
+    rgba(249,244,239,.88),
+    rgba(249,244,239,.88)),
+    url('../images/store-hero.jpg');
+
+    background-size:cover;
+
+    background-position:center;
+
+}
+
+.store-hero p{
+
+    max-width:650px;
+
+    margin:20px auto 0;
+
+}
+
+
+/* =========================================
+   STORE GRID
+========================================= */
+
+.store-grid{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(280px,1fr));
+
+    gap:30px;
+
+}
+
+.store-grid .card{
+
+    text-align:center;
+
+}
+
+.store-grid .card h3{
+
+    margin:15px 0 10px;
+
+}
+
+.store-grid .card p{
+
+    margin-bottom:15px;
+
+}
+
+
+/* OPTIONAL BUY BUTTON */
+
+.buy-btn{
+
+    display:inline-block;
+
+    margin-top:15px;
+
+    padding:12px 25px;
+
+    border-radius:50px;
+
+    background:var(--dusty-pink);
+
+    color:white;
+
+}
 ```
