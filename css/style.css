@@ -448,9 +448,28 @@ h3{
 
 }
 
+.card{
+
+    background:var(--warm-white);
+
+    border-radius:30px;
+
+    overflow:hidden;
+
+    padding:20px;
+
+    box-shadow:0 10px 35px rgba(219,168,168,.15);
+
+    transition:
+    box-shadow .3s ease,
+    transform .3s ease;
+
+}
+
 .card:hover{
 
-    transform:translateY(-8px);
+    box-shadow:
+    0 20px 45px rgba(219,168,168,.25);
 
 }
 
@@ -791,11 +810,15 @@ h3{
 }
 
 
-/* MOBILE MENU */
+/* =========================================
+   MOBILE MENU
+========================================= */
 
 @media(max-width:768px){
 
     .navbar{
+
+        display:none;
 
         position:absolute;
 
@@ -808,6 +831,9 @@ h3{
         background:#fffdfb;
 
         padding:30px;
+
+        box-shadow:
+        0 15px 40px rgba(0,0,0,.08);
 
     }
 
@@ -824,6 +850,12 @@ h3{
         gap:20px;
 
         text-align:center;
+
+    }
+
+    .menu-toggle{
+
+        display:block;
 
     }
 
@@ -873,15 +905,15 @@ h3{
 
 body{
 
-    opacity:0;
+    font-family:'Quicksand',sans-serif;
 
-    transition:1s ease;
+    background:#f9f4ef;
 
-}
+    color:#5c4a4a;
 
-body.loaded{
+    line-height:1.8;
 
-    opacity:1;
+    overflow-x:hidden;
 
 }
 
@@ -975,13 +1007,31 @@ body.loaded{
     color:white;
 
 }
+/* =========================================
+   REVEAL ANIMATIONS
+========================================= */
 
 .section,
 .card,
 .moment,
 .featured-book-container,
 .facts-list li{
-    opacity:1 !important;
-    transform:none !important;
+
+    opacity:0;
+
+    transform:translateY(40px);
+
+    transition:
+    opacity .8s ease,
+    transform .8s ease;
+
 }
-```
+
+.show{
+
+    opacity:1;
+
+    transform:translateY(0);
+
+}
+
