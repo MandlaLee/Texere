@@ -1,6 +1,5 @@
-```javascript
 /* =========================================
-   NTIYISO WEBSITE SCRIPT
+   NTIYISO WEBSITE SCRIPT (CLEAN VERSION)
 ========================================= */
 
 
@@ -11,14 +10,10 @@
 const menuToggle = document.querySelector(".menu-toggle");
 const navbar = document.querySelector(".navbar");
 
-if(menuToggle){
-
+if (menuToggle && navbar) {
     menuToggle.addEventListener("click", () => {
-
         navbar.classList.toggle("active");
-
     });
-
 }
 
 
@@ -30,17 +25,15 @@ window.addEventListener("scroll", () => {
 
     const header = document.querySelector(".header");
 
-    if(window.scrollY > 80){
+    if (!header) return;
 
+    if (window.scrollY > 80) {
         header.style.background = "rgba(255,253,251,.98)";
         header.style.boxShadow = "0 10px 30px rgba(0,0,0,.06)";
         header.style.padding = "0";
-
-    }else{
-
+    } else {
         header.style.background = "rgba(255,253,251,.92)";
         header.style.boxShadow = "none";
-
     }
 
 });
@@ -54,54 +47,43 @@ const slides = document.querySelectorAll(".slide");
 
 let currentSlide = 0;
 
-function showSlide(index){
+function showSlide(index) {
 
-    slides.forEach(slide => {
+    if (slides.length === 0) return;
 
-        slide.classList.remove("active");
-
-    });
-
+    slides.forEach(slide => slide.classList.remove("active"));
     slides[index].classList.add("active");
 
 }
 
-function nextSlide(){
+function nextSlide() {
+
+    if (slides.length === 0) return;
 
     currentSlide++;
 
-    if(currentSlide >= slides.length){
-
+    if (currentSlide >= slides.length) {
         currentSlide = 0;
-
     }
 
     showSlide(currentSlide);
 
 }
 
-if(slides.length > 0){
-
+if (slides.length > 0) {
     setInterval(nextSlide, 4000);
-
 }
 
 
 /* =========================================
-   SCROLL REVEAL ANIMATION
+   SCROLL REVEAL ANIMATION (SAFE FIXED)
 ========================================= */
 
 const revealElements = document.querySelectorAll(
-`
-.section,
-.card,
-.moment,
-.featured-book-container,
-.facts-list li
-`
+    ".section, .card, .moment, .featured-book-container, .facts-list li"
 );
 
-function revealOnScroll(){
+function revealOnScroll() {
 
     const triggerBottom = window.innerHeight * 0.85;
 
@@ -109,10 +91,8 @@ function revealOnScroll(){
 
         const elementTop = element.getBoundingClientRect().top;
 
-        if(elementTop < triggerBottom){
-
+        if (elementTop < triggerBottom) {
             element.classList.add("show");
-
         }
 
     });
@@ -120,7 +100,6 @@ function revealOnScroll(){
 }
 
 window.addEventListener("scroll", revealOnScroll);
-
 revealOnScroll();
 
 
@@ -139,12 +118,8 @@ window.addEventListener("scroll", () => {
 
         const sectionTop = section.offsetTop - 150;
 
-        const sectionHeight = section.clientHeight;
-
-        if(window.scrollY >= sectionTop){
-
+        if (window.scrollY >= sectionTop) {
             current = section.getAttribute("id");
-
         }
 
     });
@@ -153,10 +128,8 @@ window.addEventListener("scroll", () => {
 
         link.classList.remove("active-link");
 
-        if(link.getAttribute("href") === `#${current}`){
-
+        if (link.getAttribute("href") === `#${current}`) {
             link.classList.add("active-link");
-
         }
 
     });
@@ -165,31 +138,23 @@ window.addEventListener("scroll", () => {
 
 
 /* =========================================
-   FLOATING FLOWER EFFECT
+   FLOATING FLOWERS (SAFE)
 ========================================= */
 
-function createFlower(){
+function createFlower() {
 
     const flower = document.createElement("span");
-
     flower.classList.add("flower");
-
     flower.innerHTML = "✿";
 
     flower.style.left = Math.random() * window.innerWidth + "px";
-
-    flower.style.animationDuration =
-    Math.random() * 8 + 6 + "s";
-
-    flower.style.fontSize =
-    Math.random() * 20 + 20 + "px";
+    flower.style.animationDuration = (Math.random() * 8 + 6) + "s";
+    flower.style.fontSize = (Math.random() * 20 + 20) + "px";
 
     document.body.appendChild(flower);
 
     setTimeout(() => {
-
         flower.remove();
-
     }, 14000);
 
 }
@@ -205,20 +170,16 @@ window.addEventListener("scroll", () => {
 
     const hero = document.querySelector(".hero");
 
-    if(hero){
+    if (!hero) return;
 
-        let offset = window.pageYOffset;
-
-        hero.style.backgroundPositionY =
-        offset * 0.4 + "px";
-
-    }
+    let offset = window.pageYOffset;
+    hero.style.backgroundPositionY = offset * 0.4 + "px";
 
 });
 
 
 /* =========================================
-   SMOOTH BUTTON HOVER GLOW
+   BUTTON HOVER GLOW (SAFE)
 ========================================= */
 
 const buttons = document.querySelectorAll(".btn");
@@ -226,23 +187,18 @@ const buttons = document.querySelectorAll(".btn");
 buttons.forEach(button => {
 
     button.addEventListener("mouseenter", () => {
-
-        button.style.boxShadow =
-        "0 10px 30px rgba(219,168,168,.45)";
-
+        button.style.boxShadow = "0 10px 30px rgba(219,168,168,.45)";
     });
 
     button.addEventListener("mouseleave", () => {
-
         button.style.boxShadow = "none";
-
     });
 
 });
 
 
 /* =========================================
-   IMAGE HOVER TILT EFFECT
+   CARD TILT EFFECT (FIXED: NO CONFLICT WITH REVEAL)
 ========================================= */
 
 const cards = document.querySelectorAll(".card");
@@ -262,20 +218,17 @@ cards.forEach(card => {
         const rotateX = (y - centerY) / 25;
         const rotateY = (centerX - x) / 25;
 
-        card.style.transform =
-        `
-        perspective(1000px)
-        rotateX(${rotateX}deg)
-        rotateY(${rotateY}deg)
-        translateY(-8px)
+        card.style.transform = `
+            perspective(1000px)
+            rotateX(${rotateX}deg)
+            rotateY(${rotateY}deg)
         `;
 
     });
 
     card.addEventListener("mouseleave", () => {
 
-        card.style.transform =
-        "perspective(1000px) rotateX(0) rotateY(0)";
+        card.style.transform = "perspective(1000px) rotateX(0) rotateY(0)";
 
     });
 
@@ -283,7 +236,7 @@ cards.forEach(card => {
 
 
 /* =========================================
-   MOMENTS IMAGE POP
+   MOMENTS HOVER EFFECT
 ========================================= */
 
 const moments = document.querySelectorAll(".moment");
@@ -291,31 +244,21 @@ const moments = document.querySelectorAll(".moment");
 moments.forEach(moment => {
 
     moment.addEventListener("mouseenter", () => {
-
-        moment.style.transform =
-        "translateY(-10px) scale(1.03)";
-
+        moment.style.transform = "translateY(-10px) scale(1.03)";
         moment.style.transition = ".4s";
-
     });
 
     moment.addEventListener("mouseleave", () => {
-
-        moment.style.transform =
-        "translateY(0) scale(1)";
-
+        moment.style.transform = "translateY(0) scale(1)";
     });
 
 });
 
 
 /* =========================================
-   FADE IN PAGE LOAD
+   PAGE LOAD FADE IN
 ========================================= */
 
 window.addEventListener("load", () => {
-
     document.body.classList.add("loaded");
-
 });
-```
